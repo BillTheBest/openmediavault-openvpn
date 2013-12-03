@@ -1,0 +1,179 @@
+#!/bin/sh
+#
+# This file is part of OpenMediaVault-mysql.
+#
+# @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
+# @author    Marcel Beck <marcel.beck@mbeck.org>
+# @copyright Copyright (c) 2012 Marcel Beck
+#
+# OpenMediaVault is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# OpenMediaVault is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with OpenMediaVault. If not, see <http://www.gnu.org/licenses/>.
+
+set -e
+
+. /etc/default/openmediavault
+. /usr/share/openmediavault/scripts/helper-functions
+
+case "$1" in
+    configure)
+
+		# Check for XML config
+		if ! omv_config_exists "//services/openvpn"; then
+			omv_config_add_element "//services" "openvpn" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/enable"; then
+			omv_config_add_element "//services/openvpn" "enable" "0"
+		fi
+
+		if ! omv_config_exists "//services/openvpn/protocol"; then
+			omv_config_add_element "//services/openvpn" "protocol" "udp"
+		fi
+
+		if ! omv_config_exists "//services/openvpn/port"; then
+			omv_config_add_element "//services/openvpn" "port" "1194"
+		fi
+
+		if ! omv_config_exists "//services/openvpn/compression"; then
+			omv_config_add_element "//services/openvpn" "compression" "1"
+		fi
+
+		if ! omv_config_exists "//services/openvpn/extraoptions"; then
+			omv_config_add_element "//services/openvpn" "extraoptions" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/keydir"; then
+			omv_config_add_element "//services/openvpn" "keydir" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/loglevel"; then
+			omv_config_add_element "//services/openvpn" "loglevel" "2"
+		fi
+
+		if ! omv_config_exists "//services/openvpn/ca-country"; then
+			omv_config_add_element "//services/openvpn" "ca-country" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/ca-province"; then
+			omv_config_add_element "//services/openvpn" "ca-province" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/ca-city"; then
+			omv_config_add_element "//services/openvpn" "ca-city" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/ca-org"; then
+			omv_config_add_element "//services/openvpn" "ca-org" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/ca-email"; then
+			omv_config_add_element "//services/openvpn" "ca-email" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/vpn-network"; then
+			omv_config_add_element "//services/openvpn" "vpn-network" "10.8.0.0"
+		fi
+
+		if ! omv_config_exists "//services/openvpn/vpn-mask"; then
+			omv_config_add_element "//services/openvpn" "vpn-mask" "255.255.255.0"
+		fi
+
+		if ! omv_config_exists "//services/openvpn/vpn-route"; then
+			omv_config_add_element "//services/openvpn" "vpn-route" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/dns"; then
+			omv_config_add_element "//services/openvpn" "dns" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/dns-domains"; then
+			omv_config_add_element "//services/openvpn" "dns-domains" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/wins"; then
+			omv_config_add_element "//services/openvpn" "wins" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/auth"; then
+			omv_config_add_element "//services/openvpn" "auth" "0"
+		fi
+
+		if ! omv_config_exists "//services/openvpn/ca-commonname"; then
+			omv_config_add_element "//services/openvpn" "ca-commonname" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/server-cert-commonname"; then
+			omv_config_add_element "//services/openvpn" "server-cert-commonname" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/server-cert-country"; then
+			omv_config_add_element "//services/openvpn" "server-cert-country" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/server-cert-province"; then
+			omv_config_add_element "//services/openvpn" "server-cert-province" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/server-cert-city"; then
+			omv_config_add_element "//services/openvpn" "server-cert-city" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/server-cert-org"; then
+			omv_config_add_element "//services/openvpn" "server-cert-org" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/server-cert-email"; then
+			omv_config_add_element "//services/openvpn" "server-cert-email" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/clients"; then
+			omv_config_add_element "//services/openvpn" "clients" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/publicip"; then
+			omv_config_add_element "//services/openvpn" "publicip" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/publicport"; then
+			omv_config_add_element "//services/openvpn" "publicport" ""
+		fi
+
+		if ! omv_config_exists "//services/openvpn/client-to-client"; then
+			omv_config_add_element "//services/openvpn" "client-to-client" "0"
+		fi
+
+		# Add openvpn group
+		if [ `grep -c '^openvpn:' /etc/group` -lt 1 ]; then
+			groupadd openvpn
+		fi
+
+		# Reload rsyslogd so that it sees the new config file
+		/etc/init.d/rsyslog restart
+
+	;;
+
+	abort-upgrade|abort-remove|abort-deconfigure)
+	;;
+
+	*)
+		echo "postinst called with unknown argument \`$1'" >&2
+		exit 1
+	;;
+esac
+
+# dh_installdeb will replace this with shell code automatically
+# generated by other debhelper scripts.
+
+#DEBHELPER#
+
+exit 0

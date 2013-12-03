@@ -1,0 +1,50 @@
+#!/bin/sh
+#
+# @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
+# @author    Ian Moore <imooreyahoo@gmail.com>
+# @copyright Copyright (c) 2011 Ian Moore
+#
+# This file is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This file is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this file. If not, see <http://www.gnu.org/licenses/>.
+
+set -e
+
+. /etc/default/openmediavault
+. /usr/share/openmediavault/scripts/helper-functions
+. /etc/openvpn/omv-rsa/vars >/dev/null
+
+# new vars
+export KEY_DIR="$(omv_config_get "//services/openvpn/keydir")"
+export KEY_COUNTRY="$(omv_config_get "//services/openvpn/ca-country")"
+export KEY_PROVINCE="$(omv_config_get "//services/openvpn/ca-province")"
+export KEY_CITY="$(omv_config_get "//services/openvpn/ca-city")"
+export KEY_ORG="$(omv_config_get "//services/openvpn/ca-org")"
+export KEY_EMAIL="$(omv_config_get "//services/openvpn/ca-email")"
+export KEY_CN="$(omv_config_get "//services/openvpn/ca-commonname")"
+export KEY_EXPIRE=3650
+
+# Clean any existing config
+/etc/openvpn/omv-rsa/clean-all
+
+# Clear clients
+omv_config_update "//services/openvpn/clients" ""
+	
+# Initialize CA
+/etc/openvpn/omv-rsa/pkitool --initca
+
+# Initialize CRL by revoking a non-existant cert
+/etc/openvpn/omv-rsa/revoke-full NULL || echo "CRL created"
+
+# Generate Diffie Hellman parameter
+/etc/openvpn/omv-rsa/build-dh
+

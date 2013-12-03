@@ -1,0 +1,116 @@
+openmediavault-openvpn (0.4-7~1.gbp7b7baf) stable; urgency=low
+
+  ** SNAPSHOT build @7b7baff52819c8d868f27bd236435d505e0279a9 **
+
+  [ Marcel Beck ]
+  * Add debian *.triggers
+  * Add build scripts
+  * Update debian scripts
+
+  [ jenkins-debian-glue Autobuilder ]
+
+ -- jenkins-debian-glue Autobuilder <jenkins@example.org>  Sun, 06 Jan 2013 16:17:05 +0100
+
+openmediavault-openvpn (0.4) stable; urgency=low
+
+  * Upgrade to xmlstarlet 1.3.1.
+
+ -- Marcel Beck <marcel.beck@mbeck.org>  Sun, 09 Sep 2012 10:27:26 +0200
+
+openmediavault-openvpn (0.3.3) unstable; urgency=low
+
+  * Update locale
+
+ -- Marcel Beck <marcel.beck@mbeck.org>  Sat, 01 Sep 2012 17:28:29 +0200
+
+openmediavault-openvpn (0.3.2) unstable; urgency=low
+
+  * Github Issue Fix #2 - Deprecated OMV function when removing pluging
+  * I18N
+  * Update locale
+
+ -- Marcel Beck <marcel.beck@mbeck.org>  Thu, 07 Jun 2012 20:10:17 +0200
+
+openmediavault-openvpn (0.3.1) unstable; urgency=low
+
+  * Various fixes
+
+ -- Marcel Beck <marcel.beck@mbeck.org>  Wed, 23 May 2012 18:36:21 +0200
+
+openmediavault-openvpn (0.3) unstable; urgency=low
+
+  * OMV 0.3 Port
+
+ -- Marcel Beck <marcel.beck@mbeck.org>  Sat, 12 May 2012 11:15:16 +0200
+
+openmediavault-openvpn (0.2) unstable; urgency=low
+
+  * Initial Import from http://code.google.com/p/omv-plugins
+
+ -- Marcel Beck <marcel.beck@mbeck.org>  Sat, 12 May 2012 09:37:28 +0200
+
+openmediavault-openvpn (0.1.8) unstable; urgency=low
+
+  * Fixed bug that would not add "Extra options" to the OpenVPN
+  	config file.
+  	http://code.google.com/p/omv-plugins/issues/detail?id=33
+
+ -- Ian Moore <imooreyahoo@gmail.com>  Tue, 28 Feb 2012 09:44:11 -0500
+
+openmediavault-openvpn (0.1.7) unstable; urgency=low
+
+  * Added donation link.
+
+ -- Ian Moore <imooreyahoo@gmail.com>  Wed, 11 Jan 2012 13:04:24 -0500
+
+openmediavault-openvpn (0.1.6) unstable; urgency=low
+
+  * Fixed JavaScript errors in IE.
+
+ -- Ian Moore <imooreyahoo@gmail.com>  Mon, 12 Dec 2011 08:58:15 -0500
+
+openmediavault-openvpn (0.1.5) unstable; urgency=low
+
+  * Fixed log file date formatting.
+
+ -- Ian Moore <imooreyahoo@gmail.com>  Fri, 09 Dec 2011 15:20:10 -0500
+
+openmediavault-openvpn (0.1.4) unstable; urgency=low
+
+  * Fixed bug that would break the plugin in some web browsers.
+
+ -- Ian Moore <imooreyahoo@gmail.com>  Fri, 09 Dec 2011 15:20:10 -0500
+
+openmediavault-openvpn (0.1.3) unstable; urgency=low
+
+  * Fixed PHP error when plugin file is loaded before other OMV
+    plugins and OMVLogFile is not yet included. This would show an
+    "Internal Server Error."
+
+ -- Ian Moore <imooreyahoo@gmail.com>  Fri, 02 Dec 2011 12:57:11 -0500
+
+openmediavault-openvpn (0.1.2) unstable; urgency=low
+
+  * Do not include .svn folders in package.
+  * Better error handling if SSL key index does not exist in PKI.
+  * Logging Level defaults to "2" rather than the non-existent "3"
+  * Remove openvpn group when uninstalling.
+  * Fixed postrm script errors.
+  * OpenVPN logs now go to its own log file.
+  * Fixed generation of certificates with values that contain
+  	non-ascii characters.
+
+ -- Ian Moore <imooreyahoo@gmail.com>  Tue, 29 Nov 2011 15:20:00 -0500
+
+openmediavault-openvpn (0.1.1) unstable; urgency=low
+
+  * Fixed generation of DNS, DNS Domains, and WINS
+  	servers.
+
+ -- Ian Moore <imooreyahoo@gmail.com>  Fri, 25 Nov 2011 21:56:37 -0500
+
+openmediavault-openvpn (0.1.0) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Ian Moore <imooreyahoo@gmail.com>  Sun, 20 Nov 2011 20:56:19 -0500

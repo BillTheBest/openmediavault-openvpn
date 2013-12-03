@@ -1,0 +1,13 @@
+Source: openmediavault-openvpn
+Section: misc
+Priority: optional
+Maintainer: Marcel Beck <marcel.beck@mbeck.org>
+Build-Depends: debhelper (>= 7 )
+Standards-Version: 3.9.3
+Homepage: http://omv-plugins.org
+
+Package: openmediavault-openvpn
+Architecture: all
+Depends: ${misc:Depends}, openmediavault (>= 0.4), openvpn, libphp-pclzip, pwauth
+Description: OpenMediaVault OpenVPN (VPN server) plugin
+ Configure and run OpenVPN server from OpenMediaVault

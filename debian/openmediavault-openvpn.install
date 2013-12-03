@@ -1,0 +1,4 @@
+usr/share/openmediavault/* usr/share/openmediavault
+var/www/openmediavault/*	var/www/openmediavault
+etc/openvpn/* etc/openvpn
+etc/rsyslog.d/* etc/rsyslog.d

@@ -1,0 +1,49 @@
+#!/bin/sh
+#
+# @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
+# @author    Ian Moore <imooreyahoo@gmail.com>
+# @copyright Copyright (c) 2011 Ian Moore
+#
+# This file is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This file is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this file. If not, see <http://www.gnu.org/licenses/>.
+
+set -e
+
+. /etc/default/openmediavault
+. /usr/share/openmediavault/scripts/helper-functions
+. /etc/openvpn/omv-rsa/vars >/dev/null
+
+
+# Client UUID must be passed
+if [ "$2" = "" ]; then
+	echo "No UUID passsed"
+	exit 1
+fi
+
+uuid="$2"
+
+# new vars
+export KEY_DIR="$(omv_config_get "//services/openvpn/keydir")"
+export KEY_COUNTRY="$(omv_config_get "//services/openvpn/clients/client[uuid='${uuid}']/country")"
+export KEY_PROVINCE="$(omv_config_get "//services/openvpn/clients/client[uuid='${uuid}']/province")"
+export KEY_CITY="$(omv_config_get "//services/openvpn/clients/client[uuid='${uuid}']/city")"
+export KEY_ORG="$(omv_config_get "//services/openvpn/clients/client[uuid='${uuid}']/org")"
+export KEY_EMAIL="$(omv_config_get "//services/openvpn/clients/client[uuid='${uuid}']/email")"
+export KEY_CN="$(omv_config_get "//services/openvpn/clients/client[uuid='${uuid}']/commonname")"
+export KEY_EXPIRE=$(omv_config_get "//services/openvpn/clients/client[uuid='${uuid}']/expire")
+
+/etc/openvpn/omv-rsa/pkitool ${uuid}
+
+# Echo serial so that it can be populated in the config
+openssl x509 -noout -in ${KEY_DIR}/${uuid}.crt -serial
+

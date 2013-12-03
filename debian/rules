@@ -1,0 +1,62 @@
+#!/usr/bin/make -f
+
+include build_scripts/openmediavault.mk
+
+clean:
+	dh_testdir
+	dh_testroot
+	dh_clean
+
+install:
+	dh_testdir
+	dh_testroot
+	dh_prep
+	dh_installdirs
+	dh_install
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/usr/share/openmediavault/scripts/openvpn
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/usr/share/openmediavault/scripts/openvpn-ca
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/usr/share/openmediavault/scripts/openvpn-cert-client
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/usr/share/openmediavault/scripts/openvpn-cert-revoke
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/usr/share/openmediavault/scripts/openvpn-cert-server
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/etc/openvpn/nat.sh
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/etc/openvpn/vpnpwauth.sh
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/etc/openvpn/omv-rsa/build-ca
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/etc/openvpn/omv-rsa/build-dh
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/etc/openvpn/omv-rsa/build-inter
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/etc/openvpn/omv-rsa/build-key
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/etc/openvpn/omv-rsa/build-key-pass
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/etc/openvpn/omv-rsa/build-key-pkcs12
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/etc/openvpn/omv-rsa/build-key-server
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/etc/openvpn/omv-rsa/build-req
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/etc/openvpn/omv-rsa/build-req-pass
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/etc/openvpn/omv-rsa/clean-all
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/etc/openvpn/omv-rsa/inherit-inter
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/etc/openvpn/omv-rsa/list-crl
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/etc/openvpn/omv-rsa/pkitool
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/etc/openvpn/omv-rsa/revoke-full
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/etc/openvpn/omv-rsa/sign-req
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/etc/openvpn/omv-rsa/vars
+	chmod +x $(CURDIR)/debian/openmediavault-openvpn/etc/openvpn/omv-rsa/whichopensslcnf
+
+binary-indep: install omv_clean_scm
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs
+	dh_installdebconf
+	dh_lintian
+	dh_link
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary-arch:
+# We have nothing to do by default.
+
+build:
+# We have nothing to do by default.
+
+binary: binary-indep binary-arch
+.PHONY: clean binary-indep binary-arch binary install
